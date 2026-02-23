@@ -1,0 +1,53 @@
+name: Simple Ubuntu CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+
+jobs:
+  demo-job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Print basic info
+        run: |
+          echo "===== CI PIPELINE STARTED ====="
+          echo "Repository: $GITHUB_REPOSITORY"
+          echo "Branch: $GITHUB_REF"
+          echo "Triggered by: $GITHUB_ACTOR"
+          echo "Runner OS: $RUNNER_OS"
+          echo "Current date: $(date)"
+          echo "Current directory: $(pwd)"
+          echo "================================"
+
+      - name: Show system information
+        run: |
+          echo "Hostname: $(hostname)"
+          echo "Kernel version:"
+          uname -r
+          echo "Ubuntu version:"
+          lsb_release -a
+          echo "System uptime:"
+          uptime
+
+      - name: Show disk and memory usage
+        run: |
+          echo "Disk usage:"
+          df -h
+          echo "Memory usage:"
+          free -h
+
+      - name: Simple logic example
+        run: |
+          HOUR=$(date +'%H')
+          echo "Current hour: $HOUR"
+
+          if [ "$HOUR" -lt 12 ]; then
+            echo "Good morning ☀️"
+          else
+            echo "Good afternoon 🌙"
+          fi
+
+      - name: Finish
+        run: echo "===== CI PIPELINE FINISHED SUCCESSFULLY ====="
