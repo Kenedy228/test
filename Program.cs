@@ -1,1 +1,1 @@
-﻿Console.WriteLine("Тестовый пуш!");
+﻿Console.WriteLine("Тестовый пуш!")
